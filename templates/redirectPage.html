@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <p>Redirecting to the home page in <span id="countdown">3</span> seconds...</p>
+</body>
+<script>
+    var countdownDisplay = document.getElementById('countdown');
+    var count = 3;
+    countdownDisplay.textContent = count;
+
+    var countdown = setInterval(function() {
+        count--;
+        countdownDisplay.textContent = count;
+        if (count <= 0) {
+            clearInterval(countdown); 
+            window.location.href = "{{ url_for('Admi') }}";
+        }
+    }, 1000); // Update countdown every second (1000 milliseconds)
+</script>
+</html>

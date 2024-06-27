@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1500px;
+            margin: 30px auto;
+            background-color: #032d30;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: inline-block;
+            width: 150px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-select {
+            width: 150px;
+            font-size: 20px;
+            padding: 5px;
+            background-color: #032d30;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #164c4f;
+        }
+
+        table th {
+            background-color: #164c4f;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        table td {
+            font-size: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Search For Room</div>
+
+        <div class="form-group">
+            <label class="form-label">Room Bed Type:</label>
+            <select class="form-select" id="bedType">
+                <option value="All">All</option>
+                <option value="Single Bed">Single Bed</option>
+                <option value="Double Bed">Double Bed</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Room No</th>
+                        <th>Availability</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Bed Type</th>
+                    </tr>
+                </thead>
+                <tbody id="roomList">
+                    <!-- Example rows (replace with dynamic data if needed) -->
+                    <tr>
+                        <td>1</td>
+                        <td>101</td>
+                        <td>Available</td>
+                        <td>Clean</td>
+                        <td>$100</td>
+                        <td>Single Bed</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>102</td>
+                        <td>Occupied</td>
+                        <td>Clean</td>
+                        <td>$120</td>
+                        <td>Double Bed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-container">
+            <button class="button" id="searchButton">Search</button>
+            <button class="button" id="backButton">Back</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('searchButton').addEventListener('click', function () {
+                var bedType = document.getElementById('bedType').value;
+                var availableOnly = document.getElementById('availableOnly').checked;
+
+                // Example logic to fetch data via AJAX (replace with actual API call or backend logic)
+                // Replace URL with your backend endpoint
+                var url = 'your_backend_endpoint_here';
+
+                // Example AJAX call using Fetch API
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var tableBody = document.getElementById('roomList');
+                        tableBody.innerHTML = '';
+
+                        // Iterate through data and create table rows
+                        data.forEach(function (room, index) {
+                            // Filter based on bed type and availability if needed
+                            if ((bedType === 'All' || room.bedType === bedType) && (!availableOnly || room.availability === 'Available')) {
+                                var row = `<tr>
+                                    <td>${index + 1}</td>
+                                    <td>${room.roomNumber}</td>
+                                    <td>${room.availability}</td>
+                                    <td>${room.cleaningStatus}</td>
+                                    <td>${room.price}</td>
+                                    <td>${room.bedType}</td>
+                                </tr>`;
+                                tableBody.innerHTML += row;
+                            }
+                        });
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            });
+
+            document.getElementById('backButton').addEventListener('click', function () {
+                // Handle back button click
+                // Example: redirect to previous page or close modal
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>

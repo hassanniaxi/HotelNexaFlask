@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1500px;
+            margin: 20px auto;
+            background-color: #032d30;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            margin-top: 50px;
+            align-items: start;
+        }
+
+        .form-label {
+            width: 100px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-select {
+            width: 180px;
+            font-size: 20px;
+            padding: 5px;
+            background-color: #032d30;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #164c4f;
+        }
+
+        table th {
+            background-color: #164c4f;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        table td {
+            font-size: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">PICK-UP SERVICE</div>
+
+        <div class="form-group">
+            <label class="form-label">Car Type:</label>
+            <select class="form-select" id="carType">
+                <option value="default" selected disabled>Select Car Type</option>
+                <!-- Replace options dynamically if needed -->
+                <option value="SUV">SUV</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Hatchback">Hatchback</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Car Company</th>
+                        <th>Car Name</th>
+                        <th>Availability</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows (replace with dynamic data if needed) -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>30</td>
+                        <td>Male</td>
+                        <td>Toyota</td>
+                        <td>Camry</td>
+                        <td>Available</td>
+                        <td>Main Street</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>35</td>
+                        <td>Female</td>
+                        <td>Honda</td>
+                        <td>Civic</td>
+                        <td>Not Available</td>
+                        <td>Downtown</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-container">
+            <button class="button">Back</button>
+        </div>
+    </div>
+</body>
+</html>

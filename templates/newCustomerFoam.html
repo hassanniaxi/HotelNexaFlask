@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Customer Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #032d40;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            padding: 40px;
+            background-color: #032d30;
+            max-width: 800px;
+            margin: auto; 
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        label {
+            grid-column: span 1;
+            display: flex;
+            align-items: center;
+        }
+        input, select {
+            grid-column: span 2;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+        }
+        button {
+            padding: 15px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #0288d1;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            grid-column: span 3;
+            width: 50%;
+            margin: auto;
+        }
+        button:hover {
+            background-color: #01579b;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>New Customer Registration</h2>
+        <form>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="idproof">ID Proof:</label>
+            <input type="text" id="idproof" name="idproof" required>
+
+            <label for="roomtype">Room Type:</label>
+            <select id="roomtype" name="roomtype" required>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="suite">Suite</option>
+            </select>
+
+            <label for="checkin">Check-in Date:</label>
+            <input type="date" id="checkin" name="checkin" required>
+
+            <label for="checkout">Check-out Date:</label>
+            <input type="date" id="checkout" name="checkout" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

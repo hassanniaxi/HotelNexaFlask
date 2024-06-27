@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-In Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 800px;
+            margin: 30px auto;
+            background-color: #032d30;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: inline-block;
+            width: 230px;
+            font-size: 20px;
+            font-weight: bold;
+            align-items: start;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        .form-input {
+            width: 150px;
+            font-size: 20px;
+            padding: 5px;
+            background-color: #032d30;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">CHECK IN DETAILS</div>
+
+        <div class="form-group">
+            <label class="form-label">ID:</label>
+            <select class="form-input" id="customerId">
+                <!-- Populate dynamically using backend logic -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Room Number:</label>
+            <input type="text" class="form-input" id="roomNumber" readonly>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Name:</label>
+            <input type="text" class="form-input" id="customerName">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Gender:</label>
+            <input type="text" class="form-input" id="gender">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Checked-In:</label>
+            <input type="text" class="form-input" id="checkedIn">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Paid Amount (RS):</label>
+            <input type="text" class="form-input" id="deposit">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Pending Amount (RS):</label>
+            <input type="text" class="form-input" id="pending" readonly>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Paying Amount (RS):</label>
+            <input type="text" class="form-input" id="paying">
+        </div>
+
+        <div class="button-container">
+            <button class="button" id="updateButton">Update</button>
+            <button class="button" id="backButton">Back</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var customerId = document.getElementById('customerId');
+            var roomNumber = document.getElementById('roomNumber');
+            var customerName = document.getElementById('customerName');
+            var gender = document.getElementById('gender');
+            var checkedIn = document.getElementById('checkedIn');
+            var deposit = document.getElementById('deposit');
+            var pending = document.getElementById('pending');
+            var paying = document.getElementById('paying');
+            var updateButton = document.getElementById('updateButton');
+            var backButton = document.getElementById('backButton');
+
+            customerId.addEventListener('change', function () {
+                // Example AJAX call using Fetch API to fetch customer details based on ID
+                var selectedCustomerId = customerId.value;
+                var url = 'your_backend_endpoint_here?id=' + selectedCustomerId;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Populate form fields with fetched data
+                        roomNumber.value = data.roomNumber;
+                        customerName.value = data.name;
+                        gender.value = data.gender;
+                        checkedIn.value = data.checkedIn;
+                        deposit.value = data.deposit;
+                        // Calculate pending amount based on room price and deposit
+                        var roomPrice = data.roomPrice; // Replace with actual price fetched from database
+                        var amountPaid = parseInt(deposit.value);
+                        var pendingAmount = parseInt(roomPrice) - amountPaid;
+                        pending.value = pendingAmount;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            });
+
+            updateButton.addEventListener('click', function () {
+                // Example AJAX call using Fetch API to update customer details
+                var selectedCustomerId = customerId.value;
+                var room = roomNumber.value;
+                var name = customerName.value;
+                var gender = gender.value;
+                var checkedIn = checkedIn.value;
+                var amount = deposit.value;
+                var payingAmount = paying.value;
+                var pendingAmount = pending.value - payingAmount; // Update pending amount
+
+                var updateUrl = 'your_backend_update_endpoint_here';
+
+                fetch(updateUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        customerId: selectedCustomerId,
+                        roomNumber: room,
+                        name: name,
+                        gender: gender,
+                        checkedIn: checkedIn,
+                        deposit: amount,
+                        pending: pendingAmount,
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle success message or further logic
+                    alert('Customer Updated Successfully');
+                })
+                .catch(error => console.error('Error updating customer:', error));
+            });
+
+            backButton.addEventListener('click', function () {
+                // Handle back button click
+                // Example: redirect to previous page or close modal
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>

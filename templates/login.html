@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    html{
+      scroll-behavior: smooth;
+    }
+    body {
+      background-image: url("images/background.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 40px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 520px;
+    }
+
+    .login-container h2 {
+      margin-bottom: 30px;
+      color: #333;
+      text-align: center;
+      font-size: 40px;
+    }
+
+    .login-container label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .login-container input {
+      width: calc(100% - 20px);
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .login-container button:hover {
+      background-color: #218838;
+    }
+
+    .login-container .error {
+      color: red;
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-container .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 20px;
+    }
+
+    .login-container .signup-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .login-container .signup-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+  <form id="LoginForm" class="form" method="POST" action="{{ url_for('login') }}">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" name="Email" placeholder="Email" required>
+    <input type="password" id="loginPassword" name="Password" placeholder="Password" required>
+    <p id="errorMessage" style="color: red; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{ error_message }}</p>
+    <button type="submit">Login</button>
+    <p>Don't have an account? <a style="color:blue" href="{{ url_for('sign_up') }}">Sign up</a></p>
+</form>
+</div>
+  <script>
+   var errorMessage = "{{ error_message }}";
+  if (errorMessage !== "") {
+    document.getElementById("errorMessage").innerHTML = errorMessage;
+    document.getElementById("errorMessage").style.display = "block";
+  }
+  </script>
+</body>
+
+</html>

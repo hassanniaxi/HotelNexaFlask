@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Nexa Room Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #032D30;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+            background-color: #032d30;
+        }
+        .header, .table-container, .back-button {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #555;
+        }
+        td {
+            background-color: #444;
+        }
+        .back-button button {
+            padding: 20px 30px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .back-button button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="static/img/roomm.png" alt="Room Image" style="width: 200px; height: 200px;">
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Room No</th>
+                        <th>Availability</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Bed Type</th>
+                    </tr>
+                </thead>
+                <tbody id="roomTableBody">
+                    <!-- Dynamic Content -->
+                </tbody>
+            </table>
+        </div>
+        <div class="back-button">
+            <button onclick="goBack()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function loadRooms() {
+            fetch('/getRooms') // Assuming you have a backend route that returns room data
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('roomTableBody');
+                    tableBody.innerHTML = '';
+                    data.forEach((room, index) => {
+                        const row = `<tr>
+                            <td>${index + 1}</td>
+                            <td>${room.roomNumber}</td>
+                            <td>${room.availability}</td>
+                            <td>${room.cleaningStatus}</td>
+                            <td>${room.price}</td>
+                            <td>${room.bedType}</td>
+                        </tr>`;
+                        tableBody.insertAdjacentHTML('beforeend', row);
+                    });
+                })
+                .catch(error => console.error('Error loading rooms:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', loadRooms);
+    </script>
+</body>
+</html>

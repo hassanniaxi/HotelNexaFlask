@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+
+  <style>
+    body {
+      background-image: url("images/background.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .signup-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 40px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 520px;
+    }
+
+    .signup-container h2 {
+      margin-bottom: 30px;
+      color: #333;
+      text-align: center;
+      font-size: 40px;
+    }
+
+    .signup-container label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .signup-container input {
+      width: calc(100% - 20px);
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+    .signup-container button {
+      width: 100%;
+      padding: 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .signup-container button:hover {
+      background-color: #218838;
+    }
+
+    .signup-container .error {
+      color: red;
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .signup-container .login-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 20px;
+    }
+
+    .signup-container .login-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .signup-container .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <form id="RegisterForm" class="form" method="POST" action="{{ url_for('sign_up') }}" onsubmit="return validateForm(event)">
+      <h2>Register</h2>
+      <input type="text" id="name" name="Name1" placeholder="Name" required>
+      <input type="email" id="email" name="Email" placeholder="Email" required>
+      <input type="password" id="password" name="Password" placeholder="Password" required>
+      <input type="password" id="confirmPassword" name="ConfirmPassword" placeholder="Confirm Password" required>
+      <p id="errorMessage1" style="color: red; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";>{{ error_message1 }}</p>
+      <p id="errorMessage2" style="color: red; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";>{{ error_message2 }}</p>
+      <p id="errorMessage3" style="color: red; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";>{{ error_message3 }}</p>
+      <button type="submit">Register</button>   
+      <p>Already registered? <a style="color:blue" href="{{ url_for('login') }}">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    function validateForm(event) {
+      // Get form values
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var errorMessage1 = document.getElementById('errorMessage1');
+      var errorMessage2 = document.getElementById('errorMessage2');
+      var errorMessage3 = document.getElementById('errorMessage3');
+
+      // Clear previous error messages
+      errorMessage1.innerText = '';
+      errorMessage2.innerText = '';
+      errorMessage3.innerText = '';
+
+      // Check if all fields are filled
+      if (!name || !email || !password || !confirmPassword) {
+        errorMessage1.innerText = "All fields are required.";
+        return false; // Prevent form submission
+      }
+
+      // Validate password confirmation
+      if (password !== confirmPassword) {
+        errorMessage2.innerText = "Passwords do not match.";
+        return false; // Prevent form submission
+      }
+
+      // If all validations pass, allow form submission
+      return true;
+    }
+  </script>
+</body>
+
+</html>

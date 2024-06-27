@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Nexa Splash</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+        .splash-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        .splash-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <img src="static/img/splash.gif" alt="Splash Screen">
+    </div>
+
+    <script>
+        // Function to simulate loading and transition to the dashboard
+        function showDashboard() {
+            // After 5 seconds, redirect to the dashboard page
+            setTimeout(function() {
+                window.location.href = "{{ url_for('das') }}";;
+            }, 5000);
+        }
+
+        // Call the function to show the dashboard after splash screen
+        showDashboard();
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Driver - HotelNexa</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-panel">
+            <h2>Add Driver</h2>
+            <form id="addDriverForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carCompany">Car Company:</label>
+                    <input type="text" id="carCompany" name="carCompany" required>
+                </div>
+                <div class="form-group">
+                    <label for="carName">Car Name:</label>
+                    <input type="text" id="carName" name="carName" required>
+                </div>
+                <div class="form-group">
+                    <label for="availability">Availability:</label>
+                    <select id="availability" name="availability">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carLocation">Car Location:</label>
+                    <input type="text" id="carLocation" name="carLocation" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="addButton">Add</button>
+                    <button type="button" id="backButton" onclick="back()">Back</button>
+                </div>
+            </form>
+        </div>
+        <div class="image-panel">
+            <img src="static/img/license.png" alt="Add Driver Image">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addButton = document.getElementById("addButton");
+            const backButton = document.getElementById("backButton");
+
+            addButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                addDriver();
+            });
+
+            backButton.addEventListener("click", function() {
+                window.location.href = "admin.html"; // Replace with your actual admin page URL
+            });
+        });
+
+        function addDriver() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+            const carCompany = document.getElementById("carCompany").value;
+            const carName = document.getElementById("carName").value;
+            const availability = document.getElementById("availability").value;
+            const carLocation = document.getElementById("carLocation").value;
+
+            // Perform validation
+            if (name.trim() === '' || age.trim() === '' || gender.trim() === '' || carCompany.trim() === '' || carName.trim() === '' || availability.trim() === '' || carLocation.trim() === '') {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Simulate form submission (replace with actual API call)
+            const formData = {
+                name: name,
+                age: age,
+                gender: gender,
+                carCompany: carCompany,
+                carName: carName,
+                availability: availability,
+                carLocation: carLocation
+            };
+
+            console.log(formData); // Optional: Output data to console
+
+            // You can perform AJAX call here to submit form data to server
+            // Example:
+            // fetch('your-api-endpoint', {
+            //     method: 'POST',
+            //     body: JSON.stringify(formData),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Handle success response
+            //     console.log('Success:', data);
+            //     alert('Driver added successfully!');
+            // })
+            // .catch((error) => {
+            //     console.error('Error:', error);
+            //     alert('Error adding driver');
+            // });
+
+            // For demonstration purposes, alert success message
+            alert('Driver added successfully!');
+        }
+    </script>
+</body>
+</html>

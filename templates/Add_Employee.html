@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee - HotelNexa</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-panel">
+            <h2>Add Employee</h2>
+            <form id="addEmployeeForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label>
+                        <select id="gender" name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                  
+                </div>
+                <div class="form-group">
+                    <label for="job">Job:</label>
+                    <select id="job" name="job">
+                        <option value="Front Desk">Front Desk</option>
+                        <option value="HouseKeeper">HouseKeeper</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Chaff">Chaff</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Salary:</label>
+                    <input type="text" id="salary" name="salary" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone No:</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="cnic">CNIC No:</label>
+                    <input type="text" id="cnic" name="cnic" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="addButton">Add</button>
+                    <button type="button" id="backButton">Back</button>
+                </div>
+            </form>
+        </div>
+        <div class="image-panel">
+            <img src="static/img/addemp.png" alt="Add Employee Image">
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addButton = document.getElementById("addButton");
+            const backButton = document.getElementById("backButton");
+
+            addButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                addEmployee();
+            });
+
+            backButton.addEventListener("click", function() {
+                window.location.href = "admin.html"; // Replace with your actual admin page URL
+            });
+        });
+
+        function addEmployee() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
+            const job = document.getElementById("job").value;
+            const salary = document.getElementById("salary").value;
+            const phone = document.getElementById("phone").value;
+            const cnic = document.getElementById("cnic").value;
+            const email = document.getElementById("email").value;
+
+            // Perform validation
+            if (name.trim() === '' || age.trim() === '' || !gender || job.trim() === '' || salary.trim() === '' || phone.trim() === '' || cnic.trim() === '' || email.trim() === '') {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Simulate form submission (replace with actual API call)
+            const formData = {
+                name: name,
+                age: age,
+                gender: gender,
+                job: job,
+                salary: salary,
+                phone: phone,
+                cnic: cnic,
+                email: email
+            };
+
+            console.log(formData); // Optional: Output data to console
+
+            // You can perform AJAX call here to submit form data to server
+            // Example:
+            // fetch('your-api-endpoint', {
+            //     method: 'POST',
+            //     body: JSON.stringify(formData),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Handle success response
+            //     console.log('Success:', data);
+            //     alert('Employee added successfully!');
+            // })
+            // .catch((error) => {
+            //     console.error('Error:', error);
+            //     alert('Error adding employee');
+            // });
+
+            // For demonstration purposes, alert success message
+            alert('Employee added successfully!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Room - HotelNexa</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-panel">
+            <h2>Add Room</h2>
+            <form id="addRoomForm">
+                <div class="form-group">
+                    <label for="roomNumber">Room Number:</label>
+                    <input type="text" id="roomNumber" name="roomNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="availability">Availability:</label>
+                    <select id="availability" name="availability">
+                        <option value="Available">Available</option>
+                        <option value="Occupied">Occupied</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="cleanStatus">Cleaning Status:</label>
+                    <select id="cleanStatus" name="cleanStatus">
+                        <option value="Cleaned">Cleaned</option>
+                        <option value="Dirty">Dirty</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bedType">Bed Type:</label>
+                    <select id="bedType" name="bedType">
+                        <option value="Single Bed">Single Bed</option>
+                        <option value="Double Bed">Double Bed</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="addButton">Add</button>
+                    <button type="button" id="backButton">Back</button>
+                </div>
+            </form>
+        </div>
+        <div class="image-panel">
+            <img src="static/img/roomser.png" alt="Room Service Image">
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addButton = document.getElementById("addButton");
+            const backButton = document.getElementById("backButton");
+
+            addButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                addRoom();
+            });
+
+            backButton.addEventListener("click", function() {
+               // this current window off
+            });
+        });
+
+        function addRoom() {
+            const roomNumber = document.getElementById("roomNumber").value;
+            const availability = document.getElementById("availability").value;
+            const price = document.getElementById("price").value;
+            const cleanStatus = document.getElementById("cleanStatus").value;
+            const bedType = document.getElementById("bedType").value;
+
+            // Perform validation
+            // if () {
+            //     alert('Please fill in all fields');
+            //     return;
+            // }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0c0c0c;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1500px;
+            margin: 40px auto;
+            background-color: #032d30;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #164c4f;
+        }
+
+        table th {
+            background-color: #164c4f;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        table td {
+            font-size: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Employees Information</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Job</th>
+                        <th>Salary</th>
+                        <th>Phone</th>
+                        <th>Cnic</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows (replace with dynamic data if needed) -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>30</td>
+                        <td>Male</td>
+                        <td>Developer</td>
+                        <td>$5000</td>
+                        <td>123-456-7890</td>
+                        <td>12345-6789012-3</td>
+                        <td>john.doe@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>25</td>
+                        <td>Female</td>
+                        <td>Designer</td>
+                        <td>$4500</td>
+                        <td>987-654-3210</td>
+                        <td>98765-4321098-7</td>
+                        <td>jane.smith@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-container">
+            <button class="button">Back</button>
+        </div>
+    </div>
+</body>
+</html>
